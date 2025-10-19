@@ -1,0 +1,490 @@
+@import url('https://rsms.me/inter/inter.css');
+@import url('https://fonts.googleapis.com/css2?family=Playwrite+DE+Grund:wght@100..400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lilita+One&display=swap');
+
+/* @font-face {
+    font-family: 'Thintoys';
+    src: url('/fonts/Thintoys.ttf') format('truetype'),
+         url('/fonts/Thintoys.otf') format('opentype');
+    font-weight: bolder;
+    font-style: normal;
+} */
+/*   
+@font-face {
+  font-family: 'Peach Lotus';
+  src: url('/fonts/Peach Lotus.otf') format('opentype');
+  font-weight: bolder;
+  font-style: normal;
+} */
+
+@font-face {
+  font-family: 'Cedagtrial-Regular';
+  src: url('/fonts/Cedagtrial-Regular.ttf') format('truetype'),
+       url('/fonts/Cedagtrial-Regular.otf') format('opentype');
+  font-weight: bolder;
+  font-style: normal;
+}
+
+/* Montserrat */
+/* Playwrite Deutschland Grundschrift */
+
+
+body {
+    font-family: "Playwrite DE Grund", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 200;
+    font-style: normal;
+    background-color: black;
+    overflow-x: hidden;
+}
+  
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  pointer-events: all;
+  color: black;
+  text-decoration: none;
+}
+
+svg {
+  fill: black;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+canvas {
+  opacity: 0;
+  touch-action: none;
+  background-color: black;
+  animation: fade-in 5s ease 0.1s forwards;
+}
+
+/* body::-webkit-outer-spin-button,
+body::-webkit-inner-spin-button{
+  -webkit-appearance: none;
+  margin: 0;
+} */
+
+
+.logo-name{
+  font-family: 'Thintoys', sans-serif;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  color: #eeeeee;
+  position: absolute; 
+  top: 40px; 
+  left: 40px; 
+  font-size: 25px;
+}
+
+.logo-name img{
+  height: 60%;
+  margin-bottom: 10px;
+}
+
+.scroll-help{
+  position: absolute; 
+  bottom: 20px; 
+  right: 20px; 
+  font-size: 10px; 
+  text-align: center;
+  color: #eeeeee;
+  display: flex;
+  align-items: center;
+}
+
+.scroll-help span{
+ font-size: 20px;
+ font-weight: 300;
+ margin-top: 3px;
+}
+
+.tagline{
+  position: absolute; 
+  bottom: 16px; 
+  left: 0px; 
+  font-size: 20px; 
+  width: 100vw; 
+  text-align: center;
+  height: auto;
+  color: #eeeeee;
+}
+
+.navigation{
+  height: 50px;
+  width: auto;
+  position: absolute;
+  right: 40px;
+  top: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  font-size: 13px;
+  font-weight: 300;
+}
+
+.nav-links{
+  color: #eeeeee;
+  position: relative;
+  padding: 20px;
+  transition: color 0.1s;
+}
+
+
+.nav-links:hover{
+  color: #aaaaaa;
+}
+
+.nav-links::before{
+  content: '';
+  position: absolute;
+  top: 75%;
+  left: 10%;
+  width: 0%;
+  height: 0.5px;
+  background-color: #aaaaaa;
+  transition: all 0.3s;
+}
+
+.nav-links:hover::before{
+  width: 80%;
+}
+
+/* Keep UI elements above canvas and visible */
+.logo-name,
+.navigation,
+.tagline {
+  position: fixed; /* keep in viewport regardless of reflows */
+  z-index: 9999;    /* ensure on top of canvas */
+  pointer-events: auto;
+  opacity: 1 !important; /* prevent scripts/animations hiding them */
+}
+
+/* Force nav links color so they remain visible on dark backgrounds */
+.nav-links {
+  color: #eeeeee !important;
+}
+
+
+
+/* Gallery */
+
+.gallery-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+
+  height: 100vh;
+  width: 100vw;
+  color: #eeeeee;
+  background-color: black;
+  overflow-y: auto;
+
+}
+
+
+
+
+
+/* .text-container{
+  height: 100vh;
+  width: 100vw;
+  background-color: rgb(0, 0, 0);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 80px;
+  font-weight: bolder;
+  color: white;
+} */
+
+.video-container{
+  height: 100vh;
+  width: 100vw;
+  background-color: rgb(0, 0, 0);
+}
+
+
+.others-aa{
+  height: 100vh;
+  width: 100vw;
+  background-color: rgb(255, 255, 255);
+}
+
+.others{
+  height: 100vh;
+  width: 100vw;
+  background-color: rgb(0, 0, 0);
+  color: white;
+  position: relative;
+}
+
+
+.image-container {
+  width: 500px; 
+  height: 300px; 
+  overflow: hidden; 
+  position: relative; 
+}
+
+.photo {
+  position: absolute; 
+  height: 300px; 
+  width: 500px; 
+  left: 0; 
+  top: 50%; 
+  object-fit: cover; 
+  transform: translateY(-50%); 
+  transition: transform 0.3s ease; 
+}
+
+.photo:hover {
+  transform: translateY(-50%) scale(1.1);
+}
+
+#p1{
+  position: absolute;
+  top: 18%;
+  left: 6%;
+}
+
+#p2{
+  position: absolute;
+  top: 48%;
+  left: 16%;
+}
+
+.text1{
+  position: absolute;
+  top: 25%;
+  right: 7%;
+  font-size: larger;
+}
+
+.text1 span{
+  font-size: small;
+  color: rgba(225, 255, 255, 0.4);
+}
+
+/* #v1{
+  position: absolute;
+  right: 5%;
+  bottom: 5%;
+  height: 500px;
+  width: 200px;
+  border: 1px solid white;
+  transform: translateY(-50%) scale(2);
+} */
+
+
+.other-image-container {
+  width: 250px; 
+  height: 300px; 
+  overflow: hidden; 
+  position: relative; 
+}
+
+.other-photo {
+  position: absolute; 
+  height: 400px; 
+  width: 250px; 
+  top: 50%; 
+  object-fit: cover; 
+  transform: translateY(-50%); 
+  transition: transform 0.3s ease; 
+}
+
+.other-photo:hover {
+  transform: translateY(-50%) scale(1.1);
+}
+
+
+#p3 {
+  height: 300px;
+  width: 200px;
+  position: absolute;
+  right: 18%;
+  bottom: 11%;
+  transform: rotateZ(-13deg); 
+  transition: transform 0.5s ease;
+}
+
+#p4 {
+  height: 300px;
+  width: 200px;
+  position: absolute;
+  right: 7%;
+  bottom: 8%;
+  transform: rotateZ(13deg); 
+  transition: transform 0.5s ease;
+}
+
+#p3:hover {
+  transform: rotateZ(-18deg) scale(1.1); 
+}
+
+#p4:hover {
+  transform: rotateZ(18deg) scale(1.1); 
+}
+
+
+.others2{
+  height: 130vh;
+  width: 100vw;
+  background-color: rgb(0, 0, 0);
+  color: white;
+  position: relative;
+}
+
+
+.text2{
+  z-index: 1;
+  position: absolute;
+  top: 2%;
+  left: 7%;
+  font-size: larger;
+}
+
+.text2 span{
+  font-size: small;
+  color: rgba(225, 255, 255, 0.4);
+}
+
+.image-container2 {
+  width: 500px; 
+  height: 300px; 
+  overflow: hidden; 
+  position: relative; 
+}
+
+.photo2 {
+  position: absolute; 
+  height: 300px; 
+  width: 500px; 
+  left: 0; 
+  top: 50%; 
+  object-fit: cover; 
+  transform: translateY(-50%); 
+  transition: transform 0.3s ease; 
+}
+
+.photo2:hover {
+  transform: translateY(-50%) scale(1.1);
+}
+
+#p5{
+  z-index: 1;
+  position: absolute;
+  top: 30%;
+  left: 7%;
+  transform: rotateZ(10deg);
+}
+
+#p6{
+  z-index: 1;
+  position: absolute;
+  top: 45%;
+  left: 9%;
+  transform: rotateZ(-10deg);
+}
+
+#p7{
+  z-index: 1;
+  position: absolute;
+  top: 60%;
+  left: 6%;
+  transform: rotateZ(7deg);
+}
+
+.video-container2 {
+  position: absolute;
+  top: 32%;
+  right: 14%;
+  height: 50%;
+  width: 25%;
+  background-color: rgb(0, 0, 0);
+  overflow: hidden; 
+}
+
+.video-container2 video {
+  width: 100%; /* Ensures video takes up the container width */
+  height: 100%; /* Adjusts height proportionally */
+  object-fit: cover;
+}
+
+
+.text3{
+  z-index: 1;
+  position: absolute;
+  bottom: 7%;
+  right: 4%;
+  font-size: larger;
+}
+
+
+
+/* text animation */
+
+.sub-text{
+  position: absolute;
+  top: 200px;
+  left: 150px;
+  color: white;
+  font-size: 50px;
+  z-index: 100;
+}
+
+.text-container{
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+  font-family: 'Cedagtrial-Regular';
+  background-image: url('./assets/photo4.jpg');
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+
+
+
+/* @media (max-width: 500px){
+  .image-container{
+    width: 200px; 
+    height: 200px; 
+  }
+  .image-container2 {
+    width: 300px; 
+    height: 200px; 
+    overflow: hidden; 
+    position: relative; 
+  }
+
+  Canvas{
+    height: 50vh;
+  }
+} */
+
