@@ -51,8 +51,8 @@ export default function Home() {
             <div className='tagline'> 
                 Where Serenity Meets the Peaks - Your Mountain Retreat Awaits
             </div>
-            {/* Visit gallery button restored */}
-            <a className='visit-gallery-btn' href='/gallery'>Visit gallery</a>
+            {/* Visit gallery button restored with a classical, explicit CTA */}
+            <a className='visit-gallery-btn' href='/gallery' aria-label='Experience the gallery' title='Experience the gallery'>Experience the Gallery</a>
         </>
     );
 }
