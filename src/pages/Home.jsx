@@ -1,10 +1,16 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import PhotoRing from '../components/PhotoRing';
 import logo from '../assets/logo.png';
-import Gallery from './Gallery';
+// Home intentionally shows only PhotoRing and UI text
 
 export default function Home() {
     const galleryRef = useRef(null);
+    const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+
+    const toggleMobileMenu = (e) => {
+        e && e.preventDefault && e.preventDefault()
+        setMobileMenuOpen(v => !v)
+    }
 
     const scrollToGallery = (e) => {
         e.preventDefault();
@@ -19,6 +25,20 @@ export default function Home() {
                 <a href='/stay' className='nav-links' >STAY&nbsp;WITH&nbsp;US</a>
                 <a href='/reservation' className='nav-links' >RESERVATION</a>   
             </div>
+
+            {/* Mobile menu button (only visible on small screens via CSS) */}
+            <button className={`mobile-menu-button ${mobileMenuOpen ? 'open' : ''}`} onClick={toggleMobileMenu} aria-label="Open menu">
+                <span className="hamburger" />
+            </button>
+
+            {/* Mobile slide-in sidebar */}
+            <aside className={`mobile-sidebar ${mobileMenuOpen ? 'visible' : ''}`} aria-hidden={!mobileMenuOpen}>
+                <nav className="mobile-nav">
+                    <a href="/gallery" className='nav-links' onClick={() => setMobileMenuOpen(false)}>OUR GALLERY</a>
+                    <a href="/stay" className='nav-links' onClick={() => setMobileMenuOpen(false)}>STAY WITH US</a>
+                    <a href="/reservation" className='nav-links' onClick={() => setMobileMenuOpen(false)}>RESERVATION</a>
+                </nav>
+            </aside>
             
             <a className='logo-name'  href="#">
                 <img src={logo} alt="Sky Heaven Villa Logo"/> &nbsp;&nbsp;Sky Heaven Villa
@@ -31,8 +51,8 @@ export default function Home() {
             <div className='tagline'> 
                 Where Serenity Meets the Peaks - Your Mountain Retreat Awaits
             </div>
-
-            <Gallery ref={galleryRef} />
+            {/* Visit gallery button restored */}
+            <a className='visit-gallery-btn' href='/gallery'>Visit gallery</a>
         </>
     );
 }

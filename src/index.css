@@ -122,7 +122,7 @@ body::-webkit-inner-spin-button{
 
 .tagline{
   position: absolute; 
-  bottom: 16px; 
+  bottom: 36px; /* nudged upward from 16px to give more breathing room on home */
   left: 0px; 
   font-size: 20px; 
   width: 100vw; 
@@ -184,6 +184,12 @@ body::-webkit-inner-spin-button{
 /* Force nav links color so they remain visible on dark backgrounds */
 .nav-links {
   color: #eeeeee !important;
+}
+
+/* translucent background to help visibility */
+.navigation{
+  background: rgba(0,0,0,0.35);
+  border-radius: 8px;
 }
 
 
@@ -487,4 +493,207 @@ body::-webkit-inner-spin-button{
     height: 50vh;
   }
 } */
+
+/* Photoring canvas wrapper: ensure it fills viewport and scales on small screens */
+.photoring-canvas-wrapper {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.photoring-canvas canvas,
+.photoring-canvas-wrapper canvas {
+  width: 100% !important;
+  height: 100% !important;
+  display: block;
+}
+
+@media (max-width: 1200px) {
+  .image-container {
+    width: 400px;
+    height: 240px;
+  }
+}
+
+@media (max-width: 900px) {
+  .navigation {
+    right: 16px;
+    top: 16px;
+    font-size: 12px;
+  }
+
+  .logo-name {
+    left: 16px;
+    top: 16px;
+    font-size: 18px;
+  }
+
+  .tagline {
+    font-size: 16px;
+    bottom: 10px;
+  }
+
+  .image-container {
+    width: 300px;
+    height: 180px;
+  }
+
+}
+
+@media (max-width: 480px) {
+  .navigation {
+    /* switch to a right-side vertical sidebar on small screens */
+    position: fixed;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    flex-direction: column;
+    align-items: flex-end;
+    padding: 8px 6px;
+    gap: 6px;
+    background: rgba(0,0,0,0.35);
+    border-radius: 8px 0 0 8px;
+    box-shadow: -6px 6px 18px rgba(0,0,0,0.4);
+  }
+
+  .nav-links { padding: 10px; font-size: 12px }
+
+  .logo-name { font-size: 14px }
+
+  .photoring-canvas-wrapper { height: 100vh }
+}
+
+/* ensure the tagline and logo don't overlap the sidebar on small screens */
+@media (max-width: 480px) {
+  .tagline { bottom: 46px; font-size: 14px; padding: 0 12px }
+  .logo-name { left: 12px; top: 12px }
+  .scroll-help { right: 12px; bottom: 12px }
+}
+
+/* Small-screen tighter stacking: reduce gaps between navbar, ring, tagline and button */
+@media (max-width: 480px) {
+  /* enlarge photoring slightly so it appears more prominent on phones */
+  .photoring-canvas-wrapper { height: 72vh }
+
+  /* place tagline immediately below the photoring */
+  .tagline{
+    position: absolute;
+    top: calc(65vh); /* small gap under photoring */
+    left: 12px;
+    right: 12px;
+    bottom: auto;
+    font-size: 15px;
+    line-height: 1.25;
+    text-align: center;
+    color: #fff;
+    z-index: 10001;
+    font-weight: 500;
+    text-shadow: 0 4px 18px rgba(0,0,0,0.6);
+  }
+
+  /* Visit gallery button just below tagline */
+  /* Stack scroll-help, tagline and button evenly in the remaining vertical space */
+  .scroll-help{ position: absolute; top: calc(10vh); right:12px; text-align:center; z-index:10001 }
+  .scroll-help span{ font-size: 20px }
+
+  .visit-gallery-btn{
+    position: absolute;
+    top: calc(72vh + 88px); /* below tagline and scroll-help */
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10001;
+    background: linear-gradient(90deg,#ffb86b,#ff7a7a);
+    color: #111;
+    padding: 12px 22px;
+    border-radius: 999px;
+    font-weight: 700;
+    text-decoration: none;
+    box-shadow: 0 8px 26px rgba(0,0,0,0.45);
+    font-size: 16px;
+    letter-spacing: 0.6px;
+  }
+
+  /* Ensure bottom area isn't empty: add a small decorative divider */
+  .mobile-bottom-fill::after{
+    content: '';
+    position: absolute;
+    top: calc(72vh + 132px);
+    left: 0;
+    right: 0;
+    height: 40px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0));
+    z-index: 10000;
+  }
+
+  /* hide the right vertical sidebar so that the button and tagline are centered without overlap */
+  .mobile-sidebar{ display: none }
+}
+
+/* Mobile menu button (top-right) */
+.mobile-menu-button{
+  display: none; /* shown only on small screens via media query */
+  position: fixed;
+  top: 12px;
+  right: 12px;
+  width: 44px;
+  height: 44px;
+  border-radius: 8px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.06);
+  z-index: 10001;
+  align-items: center;
+  justify-content: center;
+  padding: 6px;
+}
+.mobile-menu-button .hamburger{
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: #eee;
+  position: relative;
+}
+.mobile-menu-button .hamburger::before,
+.mobile-menu-button .hamburger::after{
+  content: '';
+  position: absolute;
+  left: 0;
+  width: 22px;
+  height: 2px;
+  background: #eee;
+}
+.mobile-menu-button .hamburger::before{ top: -7px }
+.mobile-menu-button .hamburger::after{ top: 7px }
+.mobile-menu-button.open .hamburger{ background: transparent }
+.mobile-menu-button.open .hamburger::before{ transform: rotate(45deg) translate(4px, 4px) }
+.mobile-menu-button.open .hamburger::after{ transform: rotate(-45deg) translate(4px, -4px) }
+
+/* Mobile sidebar (hidden by default) */
+.mobile-sidebar{
+  position: fixed;
+  top: 0;
+  right: -100%;
+  height: 100vh;
+  width: 72vw;
+  max-width: 320px;
+  background: linear-gradient(180deg, rgba(0,0,0,0.95), rgba(0,0,0,0.9));
+  z-index: 10000;
+  padding: 56px 18px 18px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  box-shadow: -8px 0 24px rgba(0,0,0,0.6);
+  transition: right 280ms cubic-bezier(.2,.9,.2,1);
+}
+.mobile-sidebar.visible{ right: 0 }
+.mobile-nav{ display: flex; flex-direction: column; gap: 12px }
+.mobile-nav .nav-links{ padding: 12px 8px; font-size: 16px; color: #fff }
+
+/* Show mobile menu elements only on small screens */
+@media (max-width: 480px){
+  .mobile-menu-button{ display: flex }
+  /* Hide the desktop navigation on small screens to avoid duplication */
+  .navigation{ display: none }
+}
+
 
