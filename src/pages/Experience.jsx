@@ -10,10 +10,10 @@ export default function Experience(){
 
   const amenities = [
     {icon: '🛏️', title: 'Comfortable Beds'},
-    {icon: '📶', title: 'Free WiFi'},
+    {icon: '🛜', title: 'Free WiFi'},
     {icon: '🏊', title: 'Swimming Pool'},
-    {icon: '🌿', title: 'Garden'},
-    {icon: '🅿️', title: 'Ample Parking'},
+    {icon: '🏕️', title: 'Garden'},
+    {icon: '🚘', title: 'Ample Parking'},
     {icon: '🌿', title: 'Terrace Garden'},
     {icon: '🎥', title: '24/7 Security'},
     {icon: '🍳', title: 'In-house Dining'},

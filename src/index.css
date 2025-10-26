@@ -874,7 +874,7 @@ body::-webkit-inner-spin-button{
 
 /* Visual polish for Experience page */
 .exp-hero{
-  background-image: linear-gradient(180deg, rgba(10,14,20,0.6), rgba(7,10,16,0.25)), url('./assets/photo4.jpg');
+  background-image: linear-gradient(180deg, rgba(10,14,20,0.6), rgba(7,10,16,0.25)), url('./assets/p1.jpg');
   background-size: cover;
   background-position: center;
   color: #fff;
