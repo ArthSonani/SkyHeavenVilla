@@ -995,4 +995,76 @@ body::-webkit-inner-spin-button{
 /* Ensure svg icons inside dark blocks are visible */
 .book-contact-page svg, .experience-page svg { color: #e6eef6 }
 
+/* Hide native video controls/progress UI for gallery videos (hero, masonry, desktop containers) */
+.mobile-hero-video video::-webkit-media-controls-panel,
+.mobile-hero-video video::-webkit-media-controls-play-button,
+.mobile-hero-video video::-webkit-media-controls-timeline,
+.mobile-masonry video::-webkit-media-controls-panel,
+.mobile-masonry video::-webkit-media-controls-play-button,
+.mobile-masonry video::-webkit-media-controls-timeline,
+.video-container video::-webkit-media-controls-panel,
+.video-container video::-webkit-media-controls-play-button,
+.video-container video::-webkit-media-controls-timeline,
+.video-container2 video::-webkit-media-controls-panel,
+.video-container2 video::-webkit-media-controls-play-button,
+.video-container2 video::-webkit-media-controls-timeline{
+  display: none !important;
+  -webkit-appearance: none;
+}
+
+.mobile-hero-video video:focus,
+.mobile-masonry video:focus,
+.video-container video:focus,
+.video-container2 video:focus{ outline: none }
+
+/* Mobile gallery styles: carousel + masonry grid */
+@media (max-width: 767px){
+  /* make hero carousel occupy reduced height on phones */
+  .gallery-carousel{ position: relative; height: auto }
+  .carousel-viewport{ height: 50vw; overflow: hidden }
+  .carousel-item{ position: relative; width: 100%; height: 100%; object-fit: cover }
+  .carousel-btn{ position: absolute; top: 50%; transform: translateY(-50%); z-index: 60; background: rgba(0,0,0,0.4); padding: 6px 10px; border-radius:8px }
+
+  /* mobile-specific carousel wrapper */
+  .mobile-carousel{ display:flex; align-items:center; gap:8px; padding:8px }
+  .mobile-carousel .carousel-viewport{ flex:1; border-radius:12px; overflow:hidden }
+  .mobile-carousel .carousel-item{ border-radius:12px }
+
+  /* simple masonry grid using CSS columns for performance */
+  .mobile-masonry{ column-count:2; column-gap:8px; padding:0px 10px 10px 10px}
+  .mobile-masonry .m-item{ break-inside: avoid; margin-bottom:8px; overflow:hidden; border-radius:10px }
+  .mobile-masonry .m-item img{ width:100%; height:auto; display:block; object-fit:cover }
+
+  /* ensure video container is responsive and below hero on phones */
+  .video-container{ height: auto; max-height: 360px }
+  .video-container video{ height: auto; max-height: 360px; width:100%; object-fit:cover }
+
+  /* hide big arrow controls on small screens (tapping the media will be used instead) */
+  .carousel-btn{ display: none }
+
+  /* mobile masonry video and image defaults */
+  .mobile-masonry .m-item video{ width:100%; height:auto; display:block; border-radius:10px; object-fit:cover }
+  .mobile-masonry .m-item img{ width:100%; display:block; border-radius:10px; object-fit:cover }
+  /* portrait video (v2) — make it fill vertically without side bars */
+  .mobile-masonry .m-item video.portrait{ aspect-ratio: 9/16; width:100%; height:auto; object-fit: cover }
+}
+
+/* Mobile hero video (top of Gallery on phones) */
+@media (max-width: 767px){
+  .mobile-hero-video{ width:100%; height: 54vw; overflow:hidden; display:block }
+  .mobile-hero-video video{ width:100%; height:100%; object-fit:cover; display:block; border-radius:8px }
+
+  /* hide default controls/progress if any (some browsers still show UI) */
+  .mobile-hero-video video::-webkit-media-controls-panel,
+  .mobile-hero-video video::-webkit-media-controls-play-button,
+  .mobile-hero-video video::-webkit-media-controls-timeline,
+  .mobile-masonry video::-webkit-media-controls-panel{
+    display: none !important;
+    -webkit-appearance: none;
+  }
+
+  /* ensure no focus outline on video elements when tapped */
+  .mobile-hero-video video:focus, .mobile-masonry video:focus{ outline: none }
+}
+
 
